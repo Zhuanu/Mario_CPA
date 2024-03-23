@@ -85,6 +85,7 @@ const collideBoing = (p1: Coord, p2: Coord) => {
   p2.y += p2.dy
 }
 
+
 export const step = (state: State) => {
   state.pos.map((p1, i, arr) => {
     arr.slice(i + 1).map((p2) => {
@@ -131,3 +132,34 @@ export const mouseMove =
 
 export const endOfGame = (state: State): boolean =>
   state.player.life > 0 && state.pos.length > 0
+
+export const keyDown = (state: State, keyCode: string): State => {
+  const { player } = state
+  switch (keyCode) {
+    case "ArrowLeft":
+      player.coord.dx = -10
+      player.coord.dy = 0
+      break
+    // case "ArrowUp":
+    //   player.coord.dy = -10
+    //   player.coord.dx = 0
+    //   break
+    case "ArrowRight":
+      player.coord.dx = 10
+      player.coord.dy = 0
+      break
+    // case "ArrowDown":
+    //   player.coord.dy = 10
+    //   player.coord.dx = 0
+    //   break
+  }
+  return state
+}
+
+export const keyUp = (state: State): State => {
+  state.player.coord.dx = 0
+  state.player.coord.dy = 0
+  return state
+}
+
+
